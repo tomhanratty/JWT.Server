@@ -1,0 +1,106 @@
+<?xml version ='1.0' encoding ='UTF-8' ?> 
+<definitions name='Results' 
+  targetNamespace='http://localhost/JWTServer/Results' 
+  xmlns:tns=' http://localhost/JWTServer/Results ' 
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' 
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema' 
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/' 
+  xmlns='http://schemas.xmlsoap.org/wsdl/'> 
+ 
+    
+     
+<message name='getTeamRequest'> 
+  
+</message>  
+<message name='getTeamResponse'> 
+  <part name='Result' type='xsd:string'/> 
+</message> 
+
+
+<message name='getSingleResultsRequest'> 
+  <part name='var' type='xsd:string'/>
+</message>  
+<message name='getSingleResultsResponse'> 
+   <part name='Result' type='xsd:string'/> 
+</message> 
+
+<message name='getDoubleResultsRequest'> 
+  <part name='var' type='xsd:string'/>
+  <part name='var2' type='xsd:string'/>
+</message>  
+<message name='getDoubleResultsResponse'> 
+   <part name='Result' type='xsd:string'/> 
+</message> 
+
+
+
+<portType name='ResultsPortType'> 
+  <operation name='getTeams'> 
+    <input message='tns:getTeamRequest'/> 
+    <output message='tns:getTeamResponse'/> 
+  </operation> 
+  
+  <operation name='getSingleResults'> 
+    <input message='tns:getSingleResultsRequest'/> 
+    <output message='tns:getSingleResultsResponse'/> 
+  </operation> 
+  
+  <operation name='getDoubleResults'> 
+    <input message='tns:getDoubleResultsRequest'/> 
+    <output message='tns:getDoubleResultsResponse'/> 
+  </operation> 
+</portType> 
+
+
+
+<binding name='ResultsBinding' type='tns:ResultsPortType'> 
+  <soap:binding style='rpc' 
+    transport='http://schemas.xmlsoap.org/soap/http'
+  /> 
+  
+
+  <operation name='getTeams'> 
+    <soap:operation soapAction='urn:localhost-Results#getTeams'/> 
+    <input> 
+      <soap:body use='encoded' namespace='urn:localhost-Results' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='encoded' namespace='urn:localhost-Results' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output> 
+  </operation> 
+
+
+  <operation name='getSingleResults'> 
+    <soap:operation soapAction='urn:localhost-Results#getSingleResults'/> 
+    <input> 
+      <soap:body use='encoded' namespace='urn:localhost-Results' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='encoded' namespace='urn:localhost-Results' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output> 
+  </operation> 
+  
+  <operation name='getDoubleResults'> 
+    <soap:operation soapAction='urn:localhost-Results#getDoubleResults'/> 
+    <input> 
+      <soap:body use='encoded' namespace='urn:localhost-Results' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='encoded' namespace='urn:localhost-Results' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output> 
+  </operation> 
+</binding> 
+
+<service name='ResultsService'> 
+  <port name='ResultsPort' binding='ResultsBinding'> 
+    <soap:address location='http://localhost/JWTServer/loi_db.php'/> 
+  </port> 
+</service>
+</definitions>
